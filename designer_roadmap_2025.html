@@ -1,0 +1,432 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.roadmap{padding:1rem 0}
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:14px;font-weight:400;color:var(--color-text-secondary);transition:all .15s}
+.tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+.tab:hover:not(.active){background:var(--color-background-secondary)}
+.quarter-header{margin-bottom:1.25rem}
+.quarter-title{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.quarter-sub{font-size:13px;color:var(--color-text-secondary)}
+.section{margin-bottom:1.25rem;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.section-header{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.section-header:hover{background:var(--color-background-secondary)}
+.section-icon{font-size:14px;width:24px;height:24px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-title{font-size:15px;font-weight:500;color:var(--color-text-primary);flex:1}
+.section-badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:400}
+.chevron{font-size:12px;color:var(--color-text-secondary);transition:transform .2s}
+.chevron.open{transform:rotate(90deg)}
+.section-body{border-top:0.5px solid var(--color-border-tertiary);padding:12px 14px;display:none}
+.section-body.open{display:block}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.skill-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.skill-name{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.skill-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.skill-tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:20px;margin-top:5px;font-weight:400}
+.tag-must{background:#EAF3DE;color:#3B6D11}
+.tag-plus{background:#E6F1FB;color:#185FA5}
+.tag-ai{background:#EEEDFE;color:#534AB7}
+.progress-bar{height:3px;border-radius:2px;margin-top:8px;background:var(--color-border-tertiary)}
+.progress-fill{height:100%;border-radius:2px}
+.tools-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tool-pill{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-primary)}
+.goal-list{list-style:none;margin-top:4px}
+.goal-list li{font-size:13px;color:var(--color-text-secondary);padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);line-height:1.5;display:flex;gap:8px}
+.goal-list li:last-child{border-bottom:none}
+.dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.section-body p.note{font-size:12px;color:var(--color-text-secondary);margin-top:10px;padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);line-height:1.5}
+.hidden{display:none}
+</style>
+
+<div class="roadmap">
+  <div class="tabs">
+    <button class="tab active" onclick="showQ(0)">Q1 — Основы</button>
+    <button class="tab" onclick="showQ(1)">Q2 — Углубление</button>
+    <button class="tab" onclick="showQ(2)">Q3 — Продвинутый</button>
+    <button class="tab" onclick="showQ(3)">Q4 — Портфолио</button>
+    <button class="tab" onclick="showQ(4)">Всегда</button>
+  </div>
+
+  <div id="q0" class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Q1 · Январь — Март</div>
+      <div class="quarter-sub">Фундамент: теория, главные инструменты, насмотренность</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EAF3DE">🎨</div>
+        <div class="section-title">Теория дизайна</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Типографика</div><div class="skill-desc">Шрифтовые пары, иерархия, кегль, интерлиньяж, трекинг, кернинг. Засечки vs гротески, дисплейные шрифты</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Цветовая теория</div><div class="skill-desc">Колесо, HSB/RGB/CMYK, комплементарные и аналогичные схемы, психология цвета, тёмные темы</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Композиция и сетки</div><div class="skill-desc">Правило третей, золотое сечение, модульные сетки, колонки, отступы, выравнивание</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Гештальт-принципы</div><div class="skill-desc">Близость, сходство, замкнутость, непрерывность, фигура/фон — фундамент восприятия</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Визуальная иерархия</div><div class="skill-desc">Как взгляд движется по макету: Z-паттерн, F-паттерн, контраст размером и весом</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Пространство и воздух</div><div class="skill-desc">Negative space, whitespace, breathing room — читаемость и элегантность через пустоту</div><span class="skill-tag tag-must">Must</span></div>
+        </div>
+        <p class="note">Книги: «Дизайн для недизайнеров» (Robin Williams), «Thinking with Type» (Ellen Lupton), «Logo Design Love» (David Airey)</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#E6F1FB">🖥️</div>
+        <div class="section-title">Основные инструменты</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Figma — основы</div><div class="skill-desc">Фреймы, компоненты, auto-layout, стили, прототипирование, работа с текстом и векторами</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Adobe Illustrator</div><div class="skill-desc">Векторная графика, Pen tool, безье-кривые, работа с формами, логотипы, иконки</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Adobe Photoshop</div><div class="skill-desc">Ретушь, маски, смарт-объекты, цветокоррекция, работа с фото, экспорт для web</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Форматы файлов</div><div class="skill-desc">SVG, PNG, JPG, WebP, PDF — когда что использовать. Экспорт для печати (CMYK, 300dpi) и экрана</div><span class="skill-tag tag-must">Must</span></div>
+        </div>
+        <div class="tools-list"><span class="tool-pill">Figma</span><span class="tool-pill">Illustrator</span><span class="tool-pill">Photoshop</span><span class="tool-pill">Adobe Express</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EEEDFE">👁️</div>
+        <div class="section-title">Насмотренность и референсы</div>
+        <span class="section-badge tag-plus">Важно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <ul class="goal-list">
+          <li><div class="dot" style="background:#534AB7"></div>Ежедневно просматривать Dribbble, Behance, Awwwards — 20 мин в день</li>
+          <li><div class="dot" style="background:#534AB7"></div>Завести Pinterest-доску с референсами по стилям (minimalism, brutalism, glassmorphism, neobrutalism)</li>
+          <li><div class="dot" style="background:#534AB7"></div>Изучить работы топовых агентств: Pentagram, Sagmeister & Walsh, Base Design</li>
+          <li><div class="dot" style="background:#534AB7"></div>Разбирать работы по структуре: что работает и почему — вести дизайн-дневник</li>
+          <li><div class="dot" style="background:#534AB7"></div>Следить за UI/UX трендами: Material You, Apple HIG, Fluent Design</li>
+        </ul>
+        <div class="tools-list"><span class="tool-pill">Dribbble</span><span class="tool-pill">Behance</span><span class="tool-pill">Pinterest</span><span class="tool-pill">Awwwards</span><span class="tool-pill">Muzli</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FAECE7">📐</div>
+        <div class="section-title">Практика Q1 — что создать</div>
+        <span class="section-badge tag-must">Задания</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <ul class="goal-list">
+          <li><div class="dot" style="background:#D85A30"></div>Логотип для вымышленного бренда (в Illustrator) + 3 варианта</li>
+          <li><div class="dot" style="background:#D85A30"></div>Типографический постер: только шрифт без картинок — игра с иерархией</li>
+          <li><div class="dot" style="background:#D85A30"></div>Перерисовать 5 известных логотипов чтобы понять их строение</li>
+          <li><div class="dot" style="background:#D85A30"></div>Редизайн любого плохого сайта — только десктоп, 3 экрана в Figma</li>
+          <li><div class="dot" style="background:#D85A30"></div>Цветовая палитра для бренда: primary, secondary, accent + нейтралы</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="q1" class="quarter hidden">
+    <div class="quarter-header">
+      <div class="quarter-title">Q2 · Апрель — Июнь</div>
+      <div class="quarter-sub">Специализация: UI/UX, брендинг, моушн, AI-инструменты</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#E6F1FB">📱</div>
+        <div class="section-title">UI/UX дизайн</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">UX Research</div><div class="skill-desc">Пользовательские интервью, Jobs-to-be-done, Customer Journey Map, персоны, pain points</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Wireframing</div><div class="skill-desc">Lo-fi и mid-fi вайрфреймы, структура информации, навигация, user flow, карты сайта</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">UI-компоненты</div><div class="skill-desc">Кнопки, инпуты, карточки, модалки, навигация, таблицы, состояния (hover/active/disabled/error)</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Design Systems</div><div class="skill-desc">Atomic design, токены, библиотеки компонентов, Storybook, Figma Variables</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Адаптивный дизайн</div><div class="skill-desc">Брейкпоинты, mobile-first подход, fluid типографика, touch-таргеты (44px+)</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Доступность (a11y)</div><div class="skill-desc">Контрастность WCAG AA/AAA, alt-текст, клавиатурная навигация, screen readers, aria-labels</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+        <div class="tools-list"><span class="tool-pill">Figma</span><span class="tool-pill">FigJam</span><span class="tool-pill">Maze</span><span class="tool-pill">Hotjar</span><span class="tool-pill">NN/g</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EAF3DE">🏷️</div>
+        <div class="section-title">Брендинг и айдентика</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Стратегия бренда</div><div class="skill-desc">Миссия, ценности, tone of voice, positioning, Brand DNA — до дизайна</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Логотип-система</div><div class="skill-desc">Знак, логотип, комбинированный вариант, монограмма, favicon — все версии и охранное поле</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Brand Guidelines</div><div class="skill-desc">Гайдлайн (брендбук): использование, запрещённые применения, паттерны, маскоты</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Носители бренда</div><div class="skill-desc">Визитки, упаковка, мерч, бланки, соцсети, рекламные материалы — единый стиль</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EEEDFE">🤖</div>
+        <div class="section-title">AI-инструменты для дизайнера</div>
+        <span class="section-badge tag-ai">AI</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Midjourney / DALL-E</div><div class="skill-desc">Промпт-инжиниринг для визуалов, стили, aspect ratio, inpainting, референс-изображения</div><span class="skill-tag tag-ai">AI</span></div>
+          <div class="skill-card"><div class="skill-name">Adobe Firefly</div><div class="skill-desc">Generative Fill в PS, Text to Image, Generative Expand, векторизация, реколоринг</div><span class="skill-tag tag-ai">AI</span></div>
+          <div class="skill-card"><div class="skill-name">Figma AI</div><div class="skill-desc">Auto-layout suggestions, rename layers, generate copy, First Draft — автоматизация рутины</div><span class="skill-tag tag-ai">AI</span></div>
+          <div class="skill-card"><div class="skill-name">Claude / ChatGPT</div><div class="skill-desc">Копирайтинг, UX-тексты, генерация идей, анализ конкурентов, создание брифов</div><span class="skill-tag tag-ai">AI</span></div>
+          <div class="skill-card"><div class="skill-name">Stable Diffusion</div><div class="skill-desc">ControlNet, img2img, LoRA для стилизации — больше контроля чем Midjourney</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Runway / Pika</div><div class="skill-desc">Image-to-video, генерация коротких видео и анимаций — для соцсетей</div><span class="skill-tag tag-ai">AI</span></div>
+        </div>
+        <p class="note">AI — не замена навыкам, а усилитель. Без понимания теории AI-результаты будут посредственными. Сначала основы — потом AI.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FAEEDA">🎬</div>
+        <div class="section-title">Моушн-дизайн — старт</div>
+        <span class="section-badge tag-plus">Рекомендуется</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Принципы анимации</div><div class="skill-desc">12 принципов Disney: anticipation, squash & stretch, easing, follow through — база</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Figma прототипы</div><div class="skill-desc">Smart Animate, transitions, interactive components, scroll behavior, overlay</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">After Effects — основы</div><div class="skill-desc">Keyframes, easing, shape layers, маски, текстовые анимации, экспорт GIF/MP4/Lottie</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+        <div class="tools-list"><span class="tool-pill">After Effects</span><span class="tool-pill">LottieFiles</span><span class="tool-pill">Figma Animate</span><span class="tool-pill">Jitter</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q2" class="quarter hidden">
+    <div class="quarter-header">
+      <div class="quarter-title">Q3 · Июль — Сентябрь</div>
+      <div class="quarter-sub">Продвинутый уровень: 3D, веб-дизайн, маркетинг, реальные проекты</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FAECE7">🌐</div>
+        <div class="section-title">Веб-дизайн и базовый код</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">HTML/CSS основы</div><div class="skill-desc">Flexbox, Grid, переменные, анимации через CSS transition — понимать как работает верстка</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">No-code инструменты</div><div class="skill-desc">Webflow, Framer, Tilda — дизайн + публикация без разработчика. Фримиум-портфолио</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Handoff разработчику</div><div class="skill-desc">Figma DevMode, правильный нейминг слоёв, auto-layout как CSS, экспорт ассетов, токены</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Веб-типографика</div><div class="skill-desc">Google Fonts, variable fonts, clamp(), viewport units, line-length (45-75 символов)</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Скорость и оптимизация</div><div class="skill-desc">WebP, lazy loading, SVG вместо PNG для иконок — дизайнер должен думать о performance</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+        <div class="tools-list"><span class="tool-pill">Webflow</span><span class="tool-pill">Framer</span><span class="tool-pill">Tilda</span><span class="tool-pill">CodePen</span><span class="tool-pill">CSS Grid Garden</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#E1F5EE">🎲</div>
+        <div class="section-title">3D и объёмная графика</div>
+        <span class="section-badge tag-plus">Тренд 2025</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Blender — старт</div><div class="skill-desc">Базовое моделирование, материалы, освещение, рендер. Достаточно простых 3D-объектов для брендинга</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Spline</div><div class="skill-desc">3D для веба прямо в браузере: анимации, интерактив, экспорт в Webflow/React — быстрый старт</div><span class="skill-tag tag-plus">Тренд</span></div>
+          <div class="skill-card"><div class="skill-name">Cinema 4D</div><div class="skill-desc">Стандарт в моушн и брендинге. Связка с After Effects через Cineware, процедурные анимации</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">AI 3D (Luma, Meshy)</div><div class="skill-desc">Генерация 3D-моделей и сцен через AI — быстрые мокапы и visualizations без скилла в 3D</div><span class="skill-tag tag-ai">AI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FBEAF0">📣</div>
+        <div class="section-title">Маркетинговый дизайн</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Социальные сети</div><div class="skill-desc">Форматы Instagram (1:1, 4:5, 9:16), Stories, Reels, YouTube Thumbnail. Шаблоны и консистентность</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Email и баннеры</div><div class="skill-desc">HTML email ограничения, GIF в письмах, CTA-кнопки. Display-баннеры: размеры IAB, HTML5</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Лендинги и продающий дизайн</div><div class="skill-desc">Above the fold, CTA-иерархия, социальные доказательства, A/B тестирование визуалов</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Инфографика</div><div class="skill-desc">Данные → визуал: графики, диаграммы, таймлайны. Datawrapper, Flourish для журналистов</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Презентации</div><div class="skill-desc">PowerPoint, Keynote, Google Slides — визуальный сторителлинг для бизнеса</div><span class="skill-tag tag-must">Must</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EEEDFE">💼</div>
+        <div class="section-title">Работа с клиентами и процессы</div>
+        <span class="section-badge tag-must">Обязательно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <ul class="goal-list">
+          <li><div class="dot" style="background:#534AB7"></div>Написать бриф-шаблон: цели, аудитория, конкуренты, референсы, сроки, бюджет</li>
+          <li><div class="dot" style="background:#534AB7"></div>Научиться защищать дизайн-решения: "Я выбрал это потому что..." — не "мне кажется"</li>
+          <li><div class="dot" style="background:#534AB7"></div>Правила итераций: сколько правок включено, как фиксировать изменения</li>
+          <li><div class="dot" style="background:#534AB7"></div>Договор и ТЗ: шаблоны контрактов для фриланса</li>
+          <li><div class="dot" style="background:#534AB7"></div>Тайм-менеджмент: Notion, Linear, или просто Google Calendar — трекинг задач</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="q3" class="quarter hidden">
+    <div class="quarter-header">
+      <div class="quarter-title">Q4 · Октябрь — Декабрь</div>
+      <div class="quarter-sub">Портфолио, монетизация, личный бренд, выход на рынок</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EAF3DE">📁</div>
+        <div class="section-title">Портфолио</div>
+        <span class="section-badge tag-must">Критично</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Отбор работ</div><div class="skill-desc">5–8 лучших проектов разных типов. Лучше меньше, но каждый — сильный</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Кейс-стади</div><div class="skill-desc">Задача → Процесс → Решение → Результат. Покажи ход мышления, а не только финал</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Сайт-портфолио</div><div class="skill-desc">Webflow или Framer — собственный домен, быстрая загрузка, mobile-friendly</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Behance / Dribbble</div><div class="skill-desc">Профессиональный профиль с тегами и описаниями — органический трафик</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">PDF-версия</div><div class="skill-desc">Для рассылок и откликов — краткая, 10–15 страниц, с контактами</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+        <p class="note">Вымышленные проекты допустимы на старте. Придумай бренд и сделай полноценный айдентику — работодатели оценивают мышление, не только реальный опыт.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FAEEDA">💰</div>
+        <div class="section-title">Монетизация и карьера</div>
+        <span class="section-badge tag-must">Важно</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Фриланс-платформы</div><div class="skill-desc">Upwork, Freelancer, Kwork, Fiverr — профиль, первые заказы, отзывы. Начни с малых задач</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">LinkedIn и нетворкинг</div><div class="skill-desc">Оптимизированный профиль, контент о процессе работы, комментарии в сообществах</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Пассивный доход</div><div class="skill-desc">Creative Market, Gumroad, Envato — шаблоны, пресеты, иконки, шрифты, Notion-шаблоны</div><span class="skill-tag tag-plus">+Очки</span></div>
+          <div class="skill-card"><div class="skill-name">Ценообразование</div><div class="skill-desc">Почасовая vs фиксированная ставка, value-based pricing, как обосновать цену</div><span class="skill-tag tag-must">Must</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#FBEAF0">📢</div>
+        <div class="section-title">Личный бренд дизайнера</div>
+        <span class="section-badge tag-plus">Рекомендуется</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <ul class="goal-list">
+          <li><div class="dot" style="background:#D4537E"></div>Instagram или TikTok: показывай процесс (behind-the-scenes), before/after, разборы</li>
+          <li><div class="dot" style="background:#D4537E"></div>Telegram-канал или Substack: писать о дизайне — усиливает экспертизу и привлекает клиентов</li>
+          <li><div class="dot" style="background:#D4537E"></div>YouTube: таймлапсы работы, обзоры инструментов — долгосрочный трафик</li>
+          <li><div class="dot" style="background:#D4537E"></div>Участвовать в design challenges: 36 Days of Type, Logo Modernism, Daily UI</li>
+          <li><div class="dot" style="background:#D4537E"></div>Сообщества: Designer Hangout, ADPList, Figma Community, dизайн-чаты</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="q4" class="quarter hidden">
+    <div class="quarter-header">
+      <div class="quarter-title">Постоянно — весь год</div>
+      <div class="quarter-sub">Навыки, которые развиваются непрерывно и параллельно</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EEEDFE">✍️</div>
+        <div class="section-title">Soft skills дизайнера</div>
+        <span class="section-badge tag-must">Критично</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Критическое мышление</div><div class="skill-desc">Задавать "почему" до "как". Не рисовать то что просят — понять что решает проблему</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Презентация решений</div><div class="skill-desc">Объяснять решения через цели бизнеса, а не субъективный вкус. "Это увеличит конверсию потому что..."</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Приём обратной связи</div><div class="skill-desc">Не защищаться от критики, вычленять суть из эмоций, задавать уточняющие вопросы</div><span class="skill-tag tag-must">Must</span></div>
+          <div class="skill-card"><div class="skill-name">Работа в команде</div><div class="skill-desc">Git для дизайнеров (Abstract/Versions), async-коммуникация, документирование решений</div><span class="skill-tag tag-plus">+Очки</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#E6F1FB">📚</div>
+        <div class="section-title">Ресурсы для роста</div>
+        <span class="section-badge tag-plus">Всегда</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <div class="skill-grid">
+          <div class="skill-card"><div class="skill-name">Каналы и подкасты</div><div class="skill-desc">Design Better (Figma), 99% Invisible, The Futur — ежедневная подпитка идеями</div></div>
+          <div class="skill-card"><div class="skill-name">Курсы</div><div class="skill-desc">Дизайн-бюро (Горбунов), School of Motion, Coursera UX Google Certificate, Skillshare</div></div>
+          <div class="skill-card"><div class="skill-name">Книги на год</div><div class="skill-desc">«Не заставляйте меня думать» Круг, «100 Things Every Designer Needs to Know» Weinschenk, «Logo Modernism»</div></div>
+          <div class="skill-card"><div class="skill-name">Сертификаты</div><div class="skill-desc">Google UX Design (Coursera), Adobe Certified Expert, NN/g UX Certification — для CV</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <div class="section-icon" style="background:#EAF3DE">🔥</div>
+        <div class="section-title">Тренды 2025–2026 — следить</div>
+        <span class="section-badge tag-ai">Сейчас горячо</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body open">
+        <ul class="goal-list">
+          <li><div class="dot" style="background:#639922"></div>AI-ускорение: дизайнер + AI = команда из одного. Кто освоит — выиграет рынок</li>
+          <li><div class="dot" style="background:#639922"></div>3D и glassmorphism в вебе — Spline, Three.js, Lottie стали нормой лендингов</li>
+          <li><div class="dot" style="background:#639922"></div>Variable fonts и адаптивная типографика — шрифты как интерфейс</li>
+          <li><div class="dot" style="background:#639922"></div>Design tokens в Figma Variables → синхронизация с кодом без ручного труда</li>
+          <li><div class="dot" style="background:#639922"></div>Neobrutalism и anti-design как реакция на oversaturated clean design</li>
+          <li><div class="dot" style="background:#639922"></div>Spatial design (Apple Vision Pro) — новая платформа, ранние эксперименты уже ценятся</li>
+          <li><div class="dot" style="background:#639922"></div>Generative и algorithmic branding — логотипы которые меняются по алгоритму</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showQ(n){
+  ['q0','q1','q2','q3','q4'].forEach((id,i)=>{
+    document.getElementById(id).classList.toggle('hidden', i!==n);
+  });
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active', i===n);
+  });
+}
+function toggle(header){
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.chevron');
+  const open = body.classList.toggle('open');
+  chev.classList.toggle('open', open);
+}
+</script>
